@@ -1,17 +1,28 @@
-CC = gcc  # Set the compiler (replace with your compiler if different)
-
-# Target program
-TARGET = main.c
+# Compiler
+CC = gcc
+# Compiler flags
+CFLAGS = -Wall -Wextra -g
 
 # Source files
-SRC = addstudents.c calculateaverage.c displaystudents.c functions.c  # Replace with your actual file names
+SRCS = addstudents2.c calculateaverage2.c displaystudents2.c freeStudents2.c functions2.h main2.c
 
-# Rule to compile and link object files
+# Object files
+OBJS = $(SRCS:.c=.o)
+
+# Executable name
+TARGET = myprogram
+
+# Default target
 all: $(TARGET)
 
-$(TARGET): $(SRC)
-    $(CC) -o $(TARGET) $(SRC)  # Compile and link source files
+# Linking the object files to create the executable
+$(TARGET): $(OBJS)
+	$(CC) $(CFLAGS) -o $@ $^
 
-# Clean rule to remove object files (optional)
+# Compiling individual source files
+%.o: %.c
+	$(CC) $(CFLAGS) -c $< -o $@
+
+# Clean command to remove object files and the executable
 clean:
-    rm -f *.o $(TARGET)
+	rm -f $(OBJS) $(TARGET)
