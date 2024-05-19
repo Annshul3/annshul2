@@ -13,9 +13,18 @@ int main() {
         return 1;
     }
 
-    addStudents2(students, numStudents, numSubjects, numTests);
+    const char *filename = "students.csv";
+    addStudentsFromFile(filename, students, numStudents, numSubjects, numTests);
+
     displayStudents2(students, numStudents);
+
+    int rollno;
+    printf("Enter roll number to search: ");
+    scanf("%d", &rollno);
+    searchStudentByRollNo(students, numStudents, rollno);
+
     calculateAverage2(students, numStudents, numSubjects, numTests);
+
     freeStudents2(students, numStudents);
 
     return 0;
